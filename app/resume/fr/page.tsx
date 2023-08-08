@@ -3,7 +3,9 @@ import Education from "@/components/resume/education";
 import Experiences from "@/components/resume/experiences";
 
 import ResumeHeader from "@/components/resume/header";
+import Languages from "@/components/resume/languages";
 import ProfileDescription from "@/components/resume/profile-description";
+import Skills from "@/components/resume/skills";
 
 function FranchResumePage() {
   return (
@@ -12,6 +14,8 @@ function FranchResumePage() {
       <ProfileDescription />
       <Experiences />
       <Education />
+      <Skills />
+      <Languages />
     </Container>
   );
 }
