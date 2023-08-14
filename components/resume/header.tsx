@@ -5,7 +5,7 @@ import Avatar from "@/components/avatar";
 
 function ResumeHeader() {
   return (
-    <div className="mt-10 w-full flex flex-col-reverse items-center lg:flex-row lg:items-start">
+    <div className="pt-10 w-full flex flex-col-reverse items-center lg:flex-row lg:items-start">
       <div className="lg:w-1/3">
         <div className="space-y-2">
           <h1 className="text-3xl font-semibold text-black">
