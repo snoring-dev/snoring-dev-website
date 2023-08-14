@@ -1,11 +1,21 @@
+"use client"
+
 import { Archivo_Narrow } from "next/font/google";
 import { cn } from "@/utils";
 import MainNav from "./main-nav";
 import { FaArrowRight } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 const font = Archivo_Narrow({ subsets: ["latin"] });
 
-async function Navbar() {
+function Navbar() {
+  const pathname = usePathname();
+  const pageRegex = new RegExp(/^\/resume\//);
+
+  if (pageRegex.test(pathname)) {
+    return null;
+  }
+
   return (
     <div className="bg-white border-b">
       <div className="flex h-16 items-center px-4 justify-between">

@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/navbar";
@@ -17,13 +16,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const headersList = headers();
-  const pathname = headersList.get("x-invoke-path") || "";
-  const isResumePage = (new RegExp(/^\/resume\//)).test(pathname);
   return (
     <html lang="en">
       <body className={inter.className}>
-        {!isResumePage && <Navbar />}
+        <Navbar />
         {children}
       </body>
     </html>

@@ -7,7 +7,7 @@ import Languages from "@/components/resume/languages";
 import ProfileDescription from "@/components/resume/profile-description";
 import Skills from "@/components/resume/skills";
 
-function FranchResumePage() {
+function FrenchResumePage() {
   return (
     <Container>
       <ResumeHeader />
@@ -20,4 +20,4 @@ function FranchResumePage() {
   );
 }
 
-export default FranchResumePage;
+export default FrenchResumePage;
