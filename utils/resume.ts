@@ -1,5 +1,6 @@
 import { groq } from "next-sanity";
 import sanityClient from "@/lib/sanity.client";
+import { ResumeResponse } from "./types";
 
 const resumeQuery = groq`
   *[_type == "resume" && lang == $lang] {
@@ -14,17 +15,21 @@ const resumeQuery = groq`
       picture_url,
       links
     },
-    "experiences": *[_type=='experience'] {
+    "experiences": experiences[] -> {
       position_title,
       company_name,
       location_name,
       start_date,
       end_date,
       is_present,
-      body,
-      technical_stack
+      "projects": projects[] -> {
+        title,
+        body,
+        technical_stack,
+        show_title
+      }
     },
-    "academic_path": *[_type=='academicPath'] {
+    "academic_path": academic_path[] -> {
       degree_title,
       college_name,
       location_name,
@@ -42,6 +47,6 @@ const resumeQuery = groq`
   }
 `;
 
-export const getResume = async (lang: string) => {
+export const getResume = async (lang: string): Promise<ResumeResponse> => {
   return sanityClient.fetch(resumeQuery, { lang });
 };

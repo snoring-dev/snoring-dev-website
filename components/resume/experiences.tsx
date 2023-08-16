@@ -1,101 +1,19 @@
 import Heading from "../ui/Heading";
 import { Lora } from "next/font/google";
 import { MdOutlineCorporateFare } from "react-icons/md";
+import { toHTML } from "@portabletext/to-html";
+import dayjs from "dayjs";
+import { Body, Experience as ExperienceType } from "@/utils/types";
+
+import("dayjs/locale/fr");
+import("dayjs/locale/en");
+
+interface Props {
+  data: ExperienceType[];
+  locale: string;
+}
 
 const font = Lora({ subsets: ["latin"] });
-
-const ExpDLP1 = () => (
-  <section id="one-experience" className="mt-10 mb-20">
-    <div
-      id="exp-header"
-      className="flex flex-col lg:flex-row w-full justify-start lg:justify-between"
-    >
-      <p className="flex text-lg font-semibold">
-        <MdOutlineCorporateFare className="w-6 h-6 mr-2" />
-        Développeur Frontend - Sénior, DisneyLand Paris
-      </p>
-      <span className="flex flex-col lg:items-end">
-        <p className="text-lg font-light">Mars 2021 - Juin 2023</p>
-        <p className="text-sm text-gray-400">{`Val d'Europe, France`}</p>
-      </span>
-    </div>
-    <div id="exp-story" className="prose w-full max-w-full lg:max-w-5xl my-6">
-      <p>{`Depuis que j'ai rejoint l'entreprise en mars 2019, j'ai travaillé sur divers projets, tous contribuant à la plateforme numérique disneylandparis.com. React.js a été une bibliothèque clé utilisée dans ces projets, sous différentes formes, notamment MPA, SPA et full-stack avec le framework NextJS. En tant que membre de l'équipe numérique, mes responsabilités ont inclus :`}</p>
-      <ul>
-        <li>{`Intégration des composants UI dans le système de conception Fantasia-DS.`}</li>
-        <li>{`Implémentation de diverses US rédigées par les PO.`}</li>
-        <li>{`Migration de projets plus anciens vers la nouvelle architecture NextJS, `}</li>
-        <li>{`Réalisation de tests unitaires et fonctionnels à l'aide de Jest, Mocha et React Testing Library.`}</li>
-        <li>{`Réalisation de tests end-to-end avec Cypress et Cucumber.`}</li>
-        <li>{`Travail sur la mise en correspondance des données de l'API GraphQL avec les modules DLP.`}</li>
-        <li>{`Assister aux différent points/réunions à propos du nouveau socle de migration vers Next.js`}</li>
-        <li>{`Accompagner les équipes de développement dans leur process de migration en tant que référent technique.`}</li>
-        <li>{`Participation au process de recrutement des nouveaux développeurs pour renforcer les équipes disney.`}</li>
-        <li>{`Code-review, validation et déploiement des développements en cours sur les environnement de tests`}</li>
-      </ul>
-      <p>{`Dans l'ensemble, mon expérience à Disneyland Paris en tant que développeur front-end a impliqué de travailler sur des projets complexes avec une variété de technologies et d'outils, et de collaborer étroitement avec d'autres membres de l'équipe numérique pour apporter de nouvelles fonctionnalités à la plateforme disneylandparis.com. Mon travail a été crucial pour améliorer l'expérience utilisateur des visiteurs du parc et contribuer au succès de Disneyland Paris.`}</p>
-    </div>
-    <div id="technical-stuff">
-      <div className="badge badge-ghost p-3">Stack Technique:</div>
-      <div className="border-t border-gray-200 w-full my-2 py-2 px-6">
-        <p className={"prose max-w-full lg:max-w-5xl " + font.className}>
-          {`React.js, NextJS, NodeJS, TypeScript, Next Auth, GraphQL, Jest, React Testing Library, Cypress, Docker, Git, Figma, Tailwind CSS, Storybook, CSS-In-JS, Styled-components`}
-        </p>
-      </div>
-    </div>
-  </section>
-);
-
-const ExpDLP2 = () => (
-  <section id="one-experience" className="mt-10 mb-20">
-    <div
-      id="exp-header"
-      className="flex flex-col lg:flex-row w-full justify-start lg:justify-between"
-    >
-      <p className="flex text-lg font-semibold">
-        <MdOutlineCorporateFare className="w-6 h-6 mr-2" />
-        Développeur (React.js & Node.js), DisneyLand Paris
-      </p>
-      <span className="flex flex-col lg:items-end">
-        <p className="text-lg font-light">Février 2019 - Février 2021</p>
-        <p className="text-sm text-gray-400">{`Val d'Europe, France`}</p>
-      </span>
-    </div>
-
-    <div id="exp-story" className="prose w-full max-w-full lg:max-w-5xl my-6">
-      <p>{`Participation à la mise en place de la nouvelle plateforme e-commerce de Disneyland Paris. Il s'agit de la rénovation complète de la plateforme de vente en ligne de Disneyland paris, connu sous le nom de Package. La plateforme permet aux utilisateurs de réserver en ligne un séjour complet du transport jusqu'à l'arrivée à l'hôtel.`}</p>
-    </div>
-    <div id="technical-stuff">
-      <div className="badge badge-ghost p-3">Stack Technique:</div>
-      <div className="border-t border-gray-200 w-full my-2 py-2 px-6">
-        <p className={"prose max-w-full lg:max-w-5xl " + font.className}>
-          {`TypeScript, React.js, React-Router, Redux, Redux-Saga, Styled Components & Ant Design`}
-        </p>
-      </div>
-    </div>
-
-    <div id="exp-story" className="prose w-full max-w-full lg:max-w-5xl my-6">
-      <p>{`Mise en place d'un système de  mock dynamique pour gérer les problèmes des APIs et débloquer les développement. Il s'agit d'une API Mock, qui se nourrit des données de la prod et intervient lorsque les APIs réelles cessent de répondre.`}</p>
-    </div>
-    <div id="technical-stuff">
-      <div className="badge badge-ghost p-3">Stack Technique:</div>
-      <div className="border-t border-gray-200 w-full my-2 py-2 px-6">
-        <p className={"prose max-w-full lg:max-w-5xl " + font.className}>
-          {`TypeScript, Node.js,  Nest.js, Mongoose, TypeORM, Axios Interceptors`}
-        </p>
-      </div>
-    </div>
-
-    <div id="exp-story" className="prose w-full max-w-full lg:max-w-5xl my-6">
-      <p>{`Autre point important:`}</p>
-      <ul>
-        <li>{`Écritures de tests unitaires (Sinon.js, Mocha, Jest, react-testing-library)`}</li>
-        <li>{`Test Ent-to-end avec Cypress`}</li>
-        <li>{`Participation aux rituels Agile SAFE.`}</li>
-      </ul>
-    </div>
-  </section>
-);
 
 const ExpEutech = () => (
   <section id="one-experience" className="mt-10 mb-20">
@@ -241,12 +159,79 @@ const ExpHTConnect = () => (
   </section>
 );
 
-function Experiences() {
+function Experiences({ data, locale }: Props) {
+  dayjs.locale(locale);
+  const present = locale === "fr" ? `Aujourd'hui` : "Present";
+  const htmlBody = (body: Body[]) => toHTML(body);
+  const formatDate = (_date: string) => {
+    const dateObj = dayjs(_date, "YYYY-MM-DD");
+    return dateObj.format("MMMM YYYY");
+  };
+
   return (
     <section className="m-6 lg:m-0 lg:mt-20 lg:mb-20">
       <Heading title="Expériences professionnelles" uppercase />
-      <ExpDLP1 />
-      <ExpDLP2 />
+
+      {data.map((exp, k) => {
+        return (
+          <section key={k} className="mt-10 mb-20">
+            <div
+              id="exp-header"
+              className="flex flex-col lg:flex-row w-full justify-start lg:justify-between"
+            >
+              <p className="flex text-lg font-semibold">
+                <MdOutlineCorporateFare className="w-6 h-6 mr-2" />
+                {exp.position_title}, {exp.company_name}
+              </p>
+              <span className="flex flex-col lg:items-end">
+                <p className="text-lg font-light capitalize">
+                  {formatDate(exp.start_date)} -{" "}
+                  {Boolean(exp.is_present) ? present : formatDate(exp.end_date)}
+                </p>
+                <p className="text-sm text-gray-400">{exp.location_name}</p>
+              </span>
+            </div>
+            {exp.projects.map((project, i) => (
+              <>
+                <div
+                  id="exp-story"
+                  className="prose w-full max-w-full lg:max-w-5xl my-6"
+                >
+                  {project.show_title && (
+                    <span className="font-semibold text-black">
+                      {project.title}:
+                    </span>
+                  )}
+                  <div
+                    dangerouslySetInnerHTML={{ __html: htmlBody(project.body) }}
+                  />
+                </div>
+                {project.technical_stack &&
+                  project.technical_stack?.length > 0 && (
+                    <div id="technical-stuff">
+                      <div className="badge badge-ghost p-3">
+                        Stack Technique:
+                      </div>
+                      <div className="border-t border-gray-200 w-full my-2 py-2 px-6">
+                        {project.technical_stack?.map((stackLine, index) => (
+                          <p
+                            key={index}
+                            className={
+                              "prose max-w-full lg:max-w-5xl " + font.className
+                            }
+                          >
+                            {stackLine}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+              </>
+            ))}
+          </section>
+        );
+      })}
+
       <ExpEutech />
       <Exp2WLS />
       <ExpHTConnect />

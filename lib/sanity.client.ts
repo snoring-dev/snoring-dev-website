@@ -9,7 +9,7 @@ const sanityClient =
   createClient({
     projectId: "odo9cmzr",
     dataset: "production",
-    apiVersion: "2023-08-15",
+    apiVersion: "2021-10-21",
   });
 
 if (process.env.NODE_ENV !== "production") {
