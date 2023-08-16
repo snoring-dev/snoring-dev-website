@@ -231,10 +231,6 @@ function Experiences({ data, locale }: Props) {
           </section>
         );
       })}
-
-      <ExpEutech />
-      <Exp2WLS />
-      <ExpHTConnect />
     </section>
   );
 }
