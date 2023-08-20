@@ -17,7 +17,7 @@ function MainHero() {
                 Hey! <strong className="font-bold">{`I'm Mohammed,`}</strong>
               </p>
               <p>
-                {`and I'm a`} <strong className="font-bold">Frontend</strong>{" "}
+                {`and I'm a`} <strong className="font-bold">Fullstack</strong>{" "}
                 Developer
               </p>
               <div className="text-5xl flex flex-row text-black gap-8 mt-2">

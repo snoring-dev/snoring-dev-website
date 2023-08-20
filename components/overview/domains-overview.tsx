@@ -1,42 +1,7 @@
 import Image from "next/image";
-import { Archivo_Narrow } from "next/font/google";
 import Container from "../container";
 import EmptySpace from "../ui/empty-space";
-import { cn } from "@/utils";
-import { HTMLAttributes } from "react";
-
-const font = Archivo_Narrow({ subsets: ["latin"] });
-
-const FirstCard = ({ className }: HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      className,
-      "w-full rounded-xl bg-[#EDF0F9] relative h-[150px] border border-gray-400 overflow-hidden"
-    )}
-  >
-    <div className="bg-[#D9DFF2] mask mask-circle w-[100px] h-[100px] absolute -top-16 -left-16" />
-    <div className="bg-[#D9DFF2] mask mask-hexagon-2 w-[120px] h-[120px] absolute -bottom-16 -left-2 opacity-75" />
-    <div className="bg-[#D9DFF2] mask mask-squircle w-[190px] h-[190px] absolute -right-24 top-4 rotate-[28deg]" />
-    <div className="relative z-10 pt-2 pl-4">
-      <p className="text-[#585F6F] font-semibold text-xl">1</p>
-      <p className={cn(font.className, "text-gray-900 font-semibold text-2xl")}>
-        UI Integration
-      </p>
-      <p className="text-gray-700 text-sm pt-4">
-        I can transform your design from Figma to a real User Interface using
-        the latest technologies such as TailwindCSS and ReactJS
-      </p>
-    </div>
-  </div>
-);
-
-const SecondCard = () => (
-  <div className="w-full rounded-xl bg-[#EDF0F9] relative h-[150px] border border-gray-400 rotate-1"></div>
-);
-
-const ThirdCard = () => (
-  <div className="w-full rounded-xl bg-[#EDF0F9] relative h-[150px] border border-gray-400 -rotate-1"></div>
-);
+import { SkillCard } from "../ui/skill-card";
 
 function DomainsOverview() {
   return (
@@ -57,9 +22,24 @@ function DomainsOverview() {
             I specialize in
           </div>
           <div className="flex w-full flex-col gap-8 mt-6">
-            <FirstCard className="-rotate-1" />
-            <FirstCard className="rotate-1" />
-            <FirstCard className="-rotate-1" />
+            <SkillCard
+              anchor="1"
+              title="UI Integration"
+              content="I can transform your design from Figma to a real User Interface using the latest technologies such as TailwindCSS and ReactJS"
+              className="-rotate-1"
+            />
+            <SkillCard
+              anchor="2"
+              title="Software Design"
+              content="Embracing the Design-Code Synergy, I'm able to translate intricate design blueprints into functional code architecture, resulting in software that's as elegant under the hood as it is on the surface."
+              className="rotate-1"
+            />
+            <SkillCard
+              anchor="3"
+              title="Performance & Optimization"
+              content="I'm dedicated to squeezing every ounce of efficiency and speed out of the codebase, ensuring that websites and applications not only meet but exceed performance expectations."
+              className="-rotate-1"
+            />
           </div>
         </div>
       </div>
