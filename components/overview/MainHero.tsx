@@ -11,11 +11,13 @@ function MainHero() {
             <div className="hidden md:block w-[30px] h-[30px] bg-indigo-400 absolute mask mask-hexagon-2 top-16 -left-10 opacity-50" />
             <div className="hidden md:block w-[300px] h-[300px] bg-indigo-700 absolute bottom-4 -right-16 -z-20 mask mask-circle opacity-10" />
             <div className="hidden md:block w-[300px] h-[300px] bg-indigo-700 absolute -bottom-16 -right-24 -z-20 mask mask-circle opacity-5" />
-            <img
-              src="https://res.cloudinary.com/mjemmoudi/image/upload/v1692597799/personal/IMG_6616.jpg"
-              className="lg:max-w-sm rounded-lg shadow-md mb-6 lg:mb-0 relative z-10"
-              alt=""
-            />
+            <div className="cursor-pointer w-full h-full overflow-hidden rounded-lg shadow-md lg:max-w-sm  mb-6 lg:mb-0 relative z-10">
+              <img
+                src="https://res.cloudinary.com/mjemmoudi/image/upload/v1692597799/personal/IMG_6616.jpg"
+                className="transition scale-[1.35] hover:scale-150 duration-300"
+                alt="Mohammed-Jemmoudi-Portrait-Picture"
+              />
+            </div>
           </div>
 
           <div className="lg:min-w-[50%]">
