@@ -92,7 +92,7 @@ function Faq() {
             className="collapse collapse-plus bg-[#EDF0F9] mb-4"
           >
             <div className="collapse-title text-xl font-medium text-black">
-              I'm an agency, what you can do for us?
+              {`I'm an agency, what you can do for us?`}
             </div>
             <div className="collapse-content">
               <p className="text-gray-600">
