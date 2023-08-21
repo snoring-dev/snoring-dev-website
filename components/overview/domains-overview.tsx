@@ -6,8 +6,8 @@ import { SkillCard } from "../ui/skill-card";
 function DomainsOverview() {
   return (
     <Container>
-      <div className="flex flex-col-reverse lg:flex-row items-center mt-10">
-        <div className="w-1/2 h-[500px]">
+      <div className="mx-auto flex flex-col-reverse lg:flex-row items-center mt-10">
+        <div className="hidden lg:block w-full lg:w-1/2 h-[500px]">
           <div className="relative h-full w-full overflow-hidden">
             <Image
               alt="all-skills"
@@ -17,11 +17,11 @@ function DomainsOverview() {
             />
           </div>
         </div>
-        <div className="w-1/2 h-[500px] pt-4">
-          <div className="w-full font-semibold text-3xl text-black">
+        <div className="w-full lg:w-1/2 h-[500px] pt-4">
+          <div className="w-full font-semibold text-3xl text-black flex flex-col items-center lg:items-start justify-center">
             I specialize in
           </div>
-          <div className="flex w-full flex-col gap-8 mt-6">
+          <div className="flex w-full flex-col gap-8 mt-6 items-center justify-center px-4 lg:px-0">
             <SkillCard
               anchor="1"
               title="UI Integration"

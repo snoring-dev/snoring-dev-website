@@ -25,7 +25,7 @@ const SkillCard = ({ anchor, title, content, className }: CardProps) => (
       <p className={cn(font.className, "text-gray-900 font-semibold text-2xl")}>
         {title}
       </p>
-      <p className="text-gray-700 text-sm pt-2 pr-3">{content}</p>
+      <p className="text-gray-700  text-xs lg:text-sm pt-2 pr-3">{content}</p>
     </div>
   </div>
 );
