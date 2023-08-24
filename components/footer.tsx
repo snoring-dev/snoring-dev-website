@@ -4,7 +4,7 @@ import { FaHeart } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
+    <footer className="footer footer-center py-8 lg:p-10 bg-base-200 text-base-content rounded">
       <div className="grid grid-flow-col gap-4">
         <a className="link link-hover" href="#">About me</a>
         <a className="link link-hover" href="#">Contact</a>
@@ -25,7 +25,7 @@ function Footer() {
         </div>
       </div>
       <div>
-        <p className="flex items-center">Copyright © 2023 - Made with <FaHeart className="w-6 h-6 px-1" /> By @snoring.dev</p>
+        <p className="flex flex-row items-center">Copyright © 2023 - Made with <FaHeart className="w-6 h-6 px-1" /> By @snoring.dev</p>
       </div>
     </footer>
   );
