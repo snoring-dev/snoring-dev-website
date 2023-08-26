@@ -1,5 +1,6 @@
 import Container from "@/components/container";
 import Footer from "@/components/footer";
+import Proposal from "@/components/overview/proposal";
 import PortfolioCard from "@/components/portfolio/card";
 import PortfolioHero from "@/components/portfolio/hero";
 import EmptySpace from "@/components/ui/empty-space";
@@ -21,6 +22,7 @@ function PotfolioPage() {
           </div>
         </div>
       </Container>
+      <Proposal />
       <EmptySpace />
       <Footer />
     </>
