@@ -3,7 +3,6 @@ import CarouselClient from "@/components/carousel-client";
 import Image from "next/image";
 import { Archivo_Narrow } from "next/font/google";
 import { cn } from "@/utils";
-import EmptySpace from "@/components/ui/empty-space";
 import Link from "next/link";
 import Footer from "@/components/footer";
 import PortfolioCard from "@/components/portfolio/card";
