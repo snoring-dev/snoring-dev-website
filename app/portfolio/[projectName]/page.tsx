@@ -15,25 +15,25 @@ const CompanyData = () => {
       <div className="flex flex-col gap-6 border border-gray-200 rounded-lg p-3 w-full min-h-16">
         <div className="w-full flex justify-between items-center">
           <p className="font-semibold text-black">Company</p>
-          <p className="font-extralight text-gray-400/90">Disneyland Paris</p>
+          <p className="font-extralight text-blue-300">Disneyland Paris</p>
         </div>
         <div className="w-full flex justify-between items-center">
           <p className="font-semibold text-black">Location</p>
-          <p className="font-extralight text-gray-400/90">{`Val d'Europe (Paris)`}</p>
+          <p className="font-extralight text-blue-300">{`Val d'Europe (Paris)`}</p>
         </div>
         <div className="w-full flex justify-between items-center">
           <p className="font-semibold text-black">Industry</p>
-          <p className="font-extralight text-gray-400/90">
+          <p className="font-extralight text-blue-300">
             Entertainment & Lifestyle
           </p>
         </div>
         <div className="w-full flex justify-between items-center">
           <p className="font-semibold text-black">Size</p>
-          <p className="font-extralight text-gray-400/90">+17k</p>
+          <p className="font-extralight text-blue-300">+17k</p>
         </div>
         <div className="w-full flex justify-between items-center">
           <p className="font-semibold text-black">Website</p>
-          <p className="font-extralight text-gray-400/90">
+          <p className="font-extralight text-blue-300">
             <Link href="#" className="text-blue-700 font-normal">
               disneylandparis.com
             </Link>
