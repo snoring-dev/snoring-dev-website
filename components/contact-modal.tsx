@@ -9,9 +9,11 @@ import {
   DialogFooter,
 } from "@material-tailwind/react";
 import { ContactForm } from "./contact-form";
+import { useRef } from "react";
 
 function ContactModal() {
   const contactModal = useContactModal();
+  const formRef = useRef<HTMLFormElement>(null);
 
   return (
     <Dialog open={contactModal.isOpen} handler={contactModal.onClose}>
@@ -22,21 +24,8 @@ function ContactModal() {
         </div>
       </DialogHeader>
       <DialogBody divider>
-        <ContactForm />
+        <ContactForm ref={formRef} />
       </DialogBody>
-      <DialogFooter>
-        <Button
-          variant="text"
-          color="red"
-          onClick={contactModal.onClose}
-          className="mr-1"
-        >
-          <span>Cancel</span>
-        </Button>
-        <Button variant="gradient" color="green" onClick={contactModal.onClose}>
-          <span>Confirm</span>
-        </Button>
-      </DialogFooter>
     </Dialog>
   );
 }
