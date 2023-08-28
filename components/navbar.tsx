@@ -7,12 +7,14 @@ import { usePathname } from "next/navigation";
 import { TbMessage2Share } from "react-icons/tb";
 import MobileNav from "./mobile-nav";
 import Container from "./container";
+import { useContactModal } from "@/hooks/use-contact-modal";
 
 const font = Archivo_Narrow({ subsets: ["latin"] });
 
 function Navbar() {
   const pathname = usePathname();
   const pageRegex = new RegExp(/^\/resume\//);
+  const contactModal = useContactModal();
 
   if (pageRegex.test(pathname)) {
     return null;
@@ -30,22 +32,23 @@ function Navbar() {
             <div className="ml-auto flex items-center space-x-2 lg:space-x-4">
               <button
                 className="
-                flex 
-                items-center 
-                justify-between
-                bg-purple-600 
-                hover:bg-white 
-                border 
-                border-transparent 
-                transition-colors 
-                duration-300 
-                hover:border-purple-600 
-                text-white 
-                hover:text-purple-600 
-                py-2 
-                px-2 lg:px-4 
-                rounded-lg
-              "
+                  flex 
+                  items-center 
+                  justify-between
+                  bg-purple-600 
+                  hover:bg-white 
+                  border 
+                  border-transparent 
+                  transition-colors 
+                  duration-300 
+                  hover:border-purple-600 
+                  text-white 
+                  hover:text-purple-600 
+                  py-2 
+                  px-2 lg:px-4 
+                  rounded-lg
+                "
+                onClick={contactModal.onOpen}
               >
                 <span className="hidden lg:inline uppercase font-semibold text-sm">
                   Contact
