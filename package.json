@@ -6,11 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "email:preview": "email dev"
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.1",
     "@portabletext/to-html": "^2.0.0",
+    "@react-email/container": "^0.0.8",
+    "@react-email/html": "^0.0.4",
+    "@react-email/section": "^0.0.9",
+    "@react-email/text": "^0.0.5",
     "@types/node": "20.4.8",
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
@@ -19,12 +24,15 @@
     "dayjs": "^1.11.9",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
+    "googleapis": "^126.0.1",
     "next": "13.4.13",
     "next-sanity": "^5.4.0",
+    "nodemailer": "^6.9.4",
     "postcss": "8.4.27",
     "react": "18.2.0",
     "react-country-flag": "^3.1.0",
     "react-dom": "18.2.0",
+    "react-email": "^1.9.4",
     "react-hook-form": "^7.45.4",
     "react-icons": "^4.10.1",
     "tailwind-merge": "^1.14.0",
@@ -35,6 +43,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
+    "@types/nodemailer": "^6.4.9",
     "daisyui": "^3.5.1"
   }
 }

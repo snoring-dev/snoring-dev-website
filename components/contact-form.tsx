@@ -1,8 +1,9 @@
 "use client";
 import * as z from "zod";
-import { Button, Input, Textarea } from "@material-tailwind/react";
+import { Button, Input, Spinner, Textarea } from "@material-tailwind/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { forwardRef, useState } from "react";
+import { useContactModal } from "@/hooks/use-contact-modal";
 
 const formSchema = z.object({
   name: z.string().nonempty("Name is required").min(3),
@@ -22,6 +23,8 @@ type ContactFormValues = z.infer<typeof formSchema>;
 const defaultValues = { name: "", email: "", subject: "", message: "" };
 
 export const ContactForm = forwardRef<HTMLFormElement>((_props, ref) => {
+  const contactModal = useContactModal();
+  const [isLoading, setIsLoading] = useState(false);
   const [formErrors, setFormErrors] = useState<z.ZodIssue[]>([]);
   const { register, handleSubmit } = useForm<ContactFormValues>({
     defaultValues,
@@ -41,11 +44,23 @@ export const ContactForm = forwardRef<HTMLFormElement>((_props, ref) => {
 
   const onSubmit: SubmitHandler<ContactFormValues> = async (data) => {
     try {
+      setIsLoading(true);
       formSchema.parse(data);
+      const resp = await fetch(`/api/contact`, {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      if (resp.ok) {
+        contactModal.onClose();
+      }
     } catch (e) {
       if (e instanceof z.ZodError) {
         setFormErrors(e.errors);
+      } else {
+        console.log(e);
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -98,8 +113,9 @@ export const ContactForm = forwardRef<HTMLFormElement>((_props, ref) => {
         </div>
       </div>
       <div>
-        <Button type="submit" variant="gradient" color="green">
-          <span>Confirm</span>
+        <Button disabled={isLoading} type="submit" variant="gradient" color="green">
+          {!isLoading && <span>Confirm</span>}
+          {isLoading && <Spinner />}
         </Button>
       </div>
     </form>
