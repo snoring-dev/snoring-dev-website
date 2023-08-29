@@ -6,7 +6,7 @@ const OAuthClient = new OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_
 OAuthClient.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH_TOKEN });
 
 type EmailPayload = {
-  from: string;
+  from?: string;
   subject: string;
   html: string;
 };

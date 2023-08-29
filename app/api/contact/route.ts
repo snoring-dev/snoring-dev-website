@@ -7,7 +7,6 @@ export async function POST(req: Request) {
   try {
     const { name, subject, message, email } = await req.json();
     await sendEmail({
-      from: process.env.SMTP_FROM_EMAIL,
       subject,
       html: render(ContactEmail({ fullName: name, subject, email, message })),
     });
