@@ -1,0 +1,13 @@
+.page {
+  margin: auto;
+  background: white;
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  padding: 32px;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
