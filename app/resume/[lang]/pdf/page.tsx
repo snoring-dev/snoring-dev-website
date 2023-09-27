@@ -1,7 +1,7 @@
 import { Poppins, Tinos } from "next/font/google";
 import dayjs from "dayjs";
 import { getResume } from "@/utils/resume";
-import { Body, Experience, ResumeResponse } from "@/utils/types";
+import { AcademicPath, Body, Experience, ResumeResponse } from "@/utils/types";
 import "../../../page.css";
 import { cn } from "@/utils";
 import { MdOutlineCorporateFare } from "react-icons/md";
@@ -46,10 +46,10 @@ async function PdfPage({ params }: Props) {
     return (
       <div className="flex flex-col items-center justify-center">
         <p className={cn(fonts.tinos.bold, "text-2xl font-semibold")}>
-          {resumeData.at(0)?.personal_data.full_name}
+          {resumeData.at(1)?.personal_data.full_name}
         </p>
         <p className={cn(fonts.poppins.medium, "text-base py-1")}>
-          {resumeData.at(0)?.personal_data.job_title}
+          {resumeData.at(1)?.personal_data.job_title}
         </p>
         <div
           className={cn(
@@ -57,11 +57,9 @@ async function PdfPage({ params }: Props) {
             "flex flex-row divide-x divide-solid divide-gray-500 items-center justify-center text-xs text-gray-500 py-2"
           )}
         >
-          <p className="pr-2">{resumeData.at(0)?.personal_data.email}</p>
-          <p className="pl-2 pr-2">{resumeData.at(0)?.personal_data.phone}</p>
-          <p className="pl-2">
-            {resumeData.at(0)?.personal_data.address}, France
-          </p>
+          <p className="pr-2">{resumeData.at(1)?.personal_data.email}</p>
+          <p className="pl-2 pr-2">{resumeData.at(1)?.personal_data.phone}</p>
+          <p className="pl-2">{resumeData.at(1)?.personal_data.address}</p>
         </div>
       </div>
     );
@@ -84,12 +82,12 @@ async function PdfPage({ params }: Props) {
   };
 
   const profileBio = (
-    <div className="flex flex-col mt-12">
-      {sectionTitle("About Me")}
+    <div className="flex flex-col">
+      {sectionTitle("A propos")}
 
-      <span className={cn(fonts.poppins.medium, "text-sm text-black")}>
+      <span className={cn("text-sm font-light")}>
         {resumeData
-          .at(0)
+          .at(1)
           ?.personal_data.bio.split("\n")
           .map((chunk, index) => (
             <p className="pt-1 text-justify" key={index}>
@@ -115,7 +113,7 @@ async function PdfPage({ params }: Props) {
                   {exp.position_title}, {exp.company_name}
                 </p>
                 <span className="flex flex-col items-end">
-                  <p className="text-sm font-light capitalize">
+                  <p className="text-sm font-light capitalize whitespace-nowrap">
                     {formatDate(exp.start_date)} -{" "}
                     {Boolean(exp.is_present)
                       ? present
@@ -153,9 +151,7 @@ async function PdfPage({ params }: Props) {
                           {project.technical_stack?.map((stackLine, index) => (
                             <p
                               key={index}
-                              className={
-                                "prose max-w-5xl text-sm"
-                              }
+                              className={"prose max-w-5xl text-sm"}
                             >
                               {stackLine}
                             </p>
@@ -172,13 +168,49 @@ async function PdfPage({ params }: Props) {
     );
   };
 
+  const showAcademix = (data: AcademicPath[]) => {
+    return (
+      <div className="flex flex-col">
+        {sectionTitle("Formation")}
+
+        {data.map((entry, key) => {
+          const startDate = dayjs(entry.start_date, "YYYY-MM-DD", params.lang);
+          const endDate = Boolean(entry.is_present)
+            ? null
+            : dayjs(entry.end_date, "YYYY-MM-DD", params.lang);
+          const present = params.lang === "fr" ? `Aujourd'hui` : "Present";
+
+          return (
+            <section
+              key={key}
+              id="exp-header"
+              className="flex flex-col w-full mb-2"
+            >
+              <p className="flex text-lg font-semibold">
+                {`${entry.degree_title}, ${entry.college_name}`}
+              </p>
+              <span className={cn(fonts.poppins.light, "flex items-center text-sm")}>
+                <p className="capitalize">
+                  {startDate.format("MMMM YYYY")} -{" "}
+                  {endDate?.format("MMMM YYYY") ?? present}
+                </p>
+                <p className="pl-8 relative before:w-4 before:bg-gray-400 before:h-[1px] before:block before:absolute before:top-[10px] before:left-2">{entry.location_name}</p>
+              </span>
+            </section>
+          );
+        })}
+      </div>
+    );
+  };
+
   return (
     <div className="page">
       {pageHeader()}
       {profileBio}
       <div className="flex flex-col mt-4">
         {sectionTitle("Expériences", "w-1/4 mr-2")}
-        {showExp(resumeData.at(0)?.experiences ?? [])}
+        {showExp(resumeData.at(1)?.experiences ?? [])}
+        {showAcademix(resumeData.at(1)?.academic_path ?? [])}
       </div>
     </div>
   );
