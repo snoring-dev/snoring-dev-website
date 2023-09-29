@@ -1,4 +1,4 @@
-import { Bebas_Neue, Poppins, Tinos } from "next/font/google";
+import { Bebas_Neue } from "next/font/google";
 import dayjs from "dayjs";
 import { getResume } from "@/utils/resume";
 import {
@@ -14,6 +14,7 @@ import { cn } from "@/utils";
 import { MdOutlineCorporateFare } from "react-icons/md";
 import { toHTML } from "@portabletext/to-html";
 import { Metadata } from "next";
+import labels, { LabelsMap } from "@/utils/labels";
 
 import("dayjs/locale/fr");
 import("dayjs/locale/en");
@@ -37,6 +38,7 @@ export const metadata: Metadata = {
 
 async function PdfPage({ params }: Props) {
   const resumeData: ResumeResponse = await getResume(params.lang || "fr");
+  const resources: LabelsMap = labels.get(params.lang);
   dayjs.locale(params.lang);
   const present = params.lang === "fr" ? `Aujourd'hui` : "Present";
   const htmlBody = (body: Body[]) => toHTML(body);
@@ -67,7 +69,7 @@ async function PdfPage({ params }: Props) {
     );
   };
 
-  const sectionTitle = (title: string, titleWidth = "w-1/6") => {
+  const sectionTitle = (title: string) => {
     return (
       <div className="flex flex-row justify-start items-center">
         <p
@@ -85,7 +87,7 @@ async function PdfPage({ params }: Props) {
 
   const profileBio = (
     <div className="flex flex-col">
-      {sectionTitle("A propos")}
+      {sectionTitle(resources.about_me)}
 
       <span className={cn("text-sm font-light")}>
         {resumeData
@@ -147,7 +149,7 @@ async function PdfPage({ params }: Props) {
                     project.technical_stack?.length > 0 && (
                       <div id="technical-stuff">
                         <div className="badge badge-ghost p-3">
-                          Stack Technique:
+                          {resources.technical_stack}
                         </div>
                         <div className="border-t border-gray-200 w-full my-2 py-2 px-6">
                           {project.technical_stack?.map((stackLine, index) => (
@@ -173,7 +175,7 @@ async function PdfPage({ params }: Props) {
   const showAcademix = (data: AcademicPath[]) => {
     return (
       <div className="flex flex-col">
-        {sectionTitle("Formation", "w-1/5 mr-2")}
+        {sectionTitle(resources.formation)}
 
         {data.map((entry, key) => {
           const startDate = dayjs(entry.start_date, "YYYY-MM-DD", params.lang);
@@ -212,7 +214,7 @@ async function PdfPage({ params }: Props) {
 
     return (
       <div className="mt-4 mb-4">
-        {sectionTitle("Compétences", "w-1/4 mr-2")}
+        {sectionTitle(resources.skills)}
         <div className="text-base flex flex-col space-y-2 mt-2">
           {data.items.map((item) => (
             <div key={item._key} className="flex flex-row">
@@ -230,7 +232,7 @@ async function PdfPage({ params }: Props) {
 
     return (
       <div className="mt-4 mb-4">
-        {sectionTitle("Langues", "w-1/6 mr-1")}
+        {sectionTitle(resources.lang)}
         <div className="flex flex-col space-y-2 mt-2">
           {data.items.map((item) => (
             <div key={item._key} className="flex justify-between">
@@ -248,7 +250,7 @@ async function PdfPage({ params }: Props) {
       {pageHeader()}
       {profileBio}
       <div className="flex flex-col mt-4">
-        {sectionTitle("Expériences", "w-1/4 mr-2")}
+        {sectionTitle(resources.exp)}
         {showExp(resumeData.at(1)?.experiences ?? [])}
         {showAcademix(resumeData.at(1)?.academic_path ?? [])}
         {showSkills(resumeData.at(1)?.skills)}

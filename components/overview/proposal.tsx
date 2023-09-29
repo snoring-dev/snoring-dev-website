@@ -6,6 +6,7 @@ import { BsArrowRightCircle } from "react-icons/bs";
 import { MdCloudDownload } from "react-icons/md";
 import { Poppins } from "next/font/google";
 import { cn } from "@/utils";
+import DownloadResumeButton from "../download-resume-button";
 
 const font = Poppins({ subsets: ["latin"], weight: "300" });
 
@@ -36,15 +37,7 @@ function Proposal() {
               <span className="text-sm whitespace-nowrap">My LinkedIn</span>
               <SiLinkedin className="text-white w-5 h-5" />
             </Link>
-            <Link
-              href="https://res.cloudinary.com/mjemmoudi/image/upload/v1692604660/personal/FR__Mohammed_Jemmoudi_-_Sr_Frontend.pdf"
-              className="flex items-center gap-2 bg-black text-white px-3 py-3 lg:px-6 lg:py-4 rounded-lg hover:shadow-lg transition duration-300"
-            >
-              <span className="text-sm whitespace-nowrap">
-                Download my resume
-              </span>
-              <MdCloudDownload className="text-white w-5 h-5" />
-            </Link>
+            <DownloadResumeButton />
           </div>
         </div>
 

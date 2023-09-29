@@ -1,4 +1,5 @@
 import Container from "@/components/container";
+import DownloadResumeButton from "@/components/download-resume-button";
 import Education from "@/components/resume/education";
 import Experiences from "@/components/resume/experiences";
 import ResumeHeader from "@/components/resume/header";
@@ -17,6 +18,9 @@ async function FrenchResumePage({ params }: Props) {
 
   return (
     <Container>
+      <div className="fixed bottom-5 right-5">
+        <DownloadResumeButton />
+      </div>
       <ResumeHeader data={resumeData[0].personal_data} />
       <ProfileDescription data={resumeData[0].personal_data.bio} />
       <Experiences
