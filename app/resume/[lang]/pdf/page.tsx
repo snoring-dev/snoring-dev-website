@@ -1,36 +1,39 @@
-import { Poppins, Tinos } from "next/font/google";
+import { Bebas_Neue, Poppins, Tinos } from "next/font/google";
 import dayjs from "dayjs";
 import { getResume } from "@/utils/resume";
-import { AcademicPath, Body, Experience, ResumeResponse } from "@/utils/types";
+import {
+  AcademicPath,
+  Body,
+  Experience,
+  Languages,
+  ResumeResponse,
+  Skills,
+} from "@/utils/types";
 import "../../../page.css";
 import { cn } from "@/utils";
 import { MdOutlineCorporateFare } from "react-icons/md";
 import { toHTML } from "@portabletext/to-html";
+import { Metadata } from "next";
 
 import("dayjs/locale/fr");
 import("dayjs/locale/en");
 
-const poppins_light = Poppins({ subsets: ["latin"], weight: "200" });
-const poppins_medium = Poppins({ subsets: ["latin"], weight: "400" });
-const poppins_bold = Poppins({ subsets: ["latin"], weight: "700" });
-const tinos_medium = Tinos({ subsets: ["latin"], weight: "400" });
-const tinos_bold = Tinos({ subsets: ["latin"], weight: "700" });
+const bebas_neue = Bebas_Neue({ subsets: ["latin"], weight: "400" });
 
 const fonts = {
-  poppins: {
-    light: poppins_light.className,
-    medium: poppins_medium.className,
-    bold: poppins_bold.className,
-  },
-  tinos: {
-    medium: tinos_medium,
-    bold: tinos_bold,
+  bebas: {
+    regular: bebas_neue.className,
   },
 };
 
 interface Props {
   params: { lang: string };
 }
+
+export const metadata: Metadata = {
+  title: "CV - Mohammed Jemmoudi - Fullstack Developer",
+  description: "Mohammed Jemmoudi's resume",
+};
 
 async function PdfPage({ params }: Props) {
   const resumeData: ResumeResponse = await getResume(params.lang || "fr");
@@ -45,16 +48,15 @@ async function PdfPage({ params }: Props) {
   const pageHeader = () => {
     return (
       <div className="flex flex-col items-center justify-center">
-        <p className={cn(fonts.tinos.bold, "text-2xl font-semibold")}>
+        <p className={cn("text-2xl font-semibold")}>
           {resumeData.at(1)?.personal_data.full_name}
         </p>
-        <p className={cn(fonts.poppins.medium, "text-base py-1")}>
+        <p className={cn("text-base py-1")}>
           {resumeData.at(1)?.personal_data.job_title}
         </p>
         <div
           className={cn(
-            fonts.poppins.light,
-            "flex flex-row divide-x divide-solid divide-gray-500 items-center justify-center text-xs text-gray-500 py-2"
+            "flex flex-row divide-x divide-solid divide-gray-500 items-center justify-center text-xs text-gray-700 py-2"
           )}
         >
           <p className="pr-2">{resumeData.at(1)?.personal_data.email}</p>
@@ -65,18 +67,18 @@ async function PdfPage({ params }: Props) {
     );
   };
 
-  const sectionTitle = (title: string, titleWidth = "w-1/5") => {
+  const sectionTitle = (title: string, titleWidth = "w-1/6") => {
     return (
       <div className="flex flex-row justify-start items-center">
         <p
           className={cn(
-            fonts.tinos.medium,
-            "font-bold my-2 text-2xl " + titleWidth
+            fonts.bebas.regular,
+            "font-bold my-2 text-2xl whitespace-nowrap pr-2"
           )}
         >
           {title}
         </p>
-        <div className="w-full bg-black h-2 relative top-1" />
+        <div className="w-full bg-black h-2 relative -bottom-1" />
       </div>
     );
   };
@@ -171,7 +173,7 @@ async function PdfPage({ params }: Props) {
   const showAcademix = (data: AcademicPath[]) => {
     return (
       <div className="flex flex-col">
-        {sectionTitle("Formation")}
+        {sectionTitle("Formation", "w-1/5 mr-2")}
 
         {data.map((entry, key) => {
           const startDate = dayjs(entry.start_date, "YYYY-MM-DD", params.lang);
@@ -186,19 +188,57 @@ async function PdfPage({ params }: Props) {
               id="exp-header"
               className="flex flex-col w-full mb-2"
             >
-              <p className="flex text-lg font-semibold">
+              <p className="flex font-semibold">
                 {`${entry.degree_title}, ${entry.college_name}`}
               </p>
-              <span className={cn(fonts.poppins.light, "flex items-center text-sm")}>
+              <span className={cn("flex items-center text-sm")}>
                 <p className="capitalize">
                   {startDate.format("MMMM YYYY")} -{" "}
                   {endDate?.format("MMMM YYYY") ?? present}
                 </p>
-                <p className="pl-8 relative before:w-4 before:bg-gray-400 before:h-[1px] before:block before:absolute before:top-[10px] before:left-2">{entry.location_name}</p>
+                <p className="pl-8 relative before:w-4 before:bg-gray-400 before:h-[1px] before:block before:absolute before:top-[10px] before:left-2">
+                  {entry.location_name}
+                </p>
               </span>
             </section>
           );
         })}
+      </div>
+    );
+  };
+
+  const showSkills = (data?: Skills) => {
+    if (!data) return null;
+
+    return (
+      <div className="mt-4 mb-4">
+        {sectionTitle("Compétences", "w-1/4 mr-2")}
+        <div className="text-base flex flex-col space-y-2 mt-2">
+          {data.items.map((item) => (
+            <div key={item._key} className="flex flex-row">
+              <p className="font-semibold pr-2">{item.key}:</p>
+              <p className="whitespace-break-spaces">{item.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const showLangs = (data?: Languages) => {
+    if (!data) return null;
+
+    return (
+      <div className="mt-4 mb-4">
+        {sectionTitle("Langues", "w-1/6 mr-1")}
+        <div className="flex flex-col space-y-2 mt-2">
+          {data.items.map((item) => (
+            <div key={item._key} className="flex justify-between">
+              <p className="font-semibold pr-2">{item.key}</p>
+              <p className="text-gray-500 italic">{item.value}</p>
+            </div>
+          ))}
+        </div>
       </div>
     );
   };
@@ -211,6 +251,8 @@ async function PdfPage({ params }: Props) {
         {sectionTitle("Expériences", "w-1/4 mr-2")}
         {showExp(resumeData.at(1)?.experiences ?? [])}
         {showAcademix(resumeData.at(1)?.academic_path ?? [])}
+        {showSkills(resumeData.at(1)?.skills)}
+        {showLangs(resumeData.at(1)?.languages)}
       </div>
     </div>
   );

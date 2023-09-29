@@ -16,7 +16,11 @@ export async function GET(
     await page.emulateMediaType("screen");
     const pdfBuffer = await page.pdf({ format: "A4" });
     const resp = new NextResponse(pdfBuffer);
-    resp.headers.append("Content-type", "application/pdf");
+    resp.headers.append("Content-Type", "application/pdf");
+    resp.headers.append(
+      "Content-Disposition",
+      `attachment; filename="CV-Mohammed-JEMMOUDI_[Fullstack-Developer].pdf"`
+    );
     await browser.close();
 
     return resp;
