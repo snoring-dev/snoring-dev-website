@@ -7,12 +7,12 @@ const frLabels = {
   exp: "Expériences",
 };
 const enLabels = {
-  about_me: "A propos",
-  technical_stack: "Stack Technique:",
-  formation: "Formation",
-  skills: "Compétences",
-  lang: "Langues",
-  exp: "Expériences",
+  about_me: "About",
+  technical_stack: "Technical stack:",
+  formation: "Academic path",
+  skills: "Skills",
+  lang: "Languages",
+  exp: "Work history",
 };
 
 const labels = new Map();

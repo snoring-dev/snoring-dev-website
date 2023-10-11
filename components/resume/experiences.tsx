@@ -9,13 +9,15 @@ import("dayjs/locale/fr");
 import("dayjs/locale/en");
 
 interface Props {
+  title: string;
+  stackLabel: string;
   data: ExperienceType[];
   locale: string;
 }
 
 const font = Lora({ subsets: ["latin"] });
 
-function Experiences({ data, locale }: Props) {
+function Experiences({ title, stackLabel, data, locale }: Props) {
   dayjs.locale(locale);
   const present = locale === "fr" ? `Aujourd'hui` : "Present";
   const htmlBody = (body: Body[]) => toHTML(body);
@@ -26,7 +28,7 @@ function Experiences({ data, locale }: Props) {
 
   return (
     <section className="m-6 lg:m-0 lg:mt-20 lg:mb-20">
-      <Heading title="Expériences professionnelles" uppercase />
+      <Heading title={title} uppercase />
 
       {data.map((exp, k) => {
         return (
@@ -66,7 +68,7 @@ function Experiences({ data, locale }: Props) {
                   project.technical_stack?.length > 0 && (
                     <div id="technical-stuff">
                       <div className="badge badge-ghost p-3">
-                        Stack Technique:
+                        {stackLabel}
                       </div>
                       <div className="border-t border-gray-200 w-full my-2 py-2 px-6">
                         {project.technical_stack?.map((stackLine, index) => (
