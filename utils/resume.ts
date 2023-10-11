@@ -3,7 +3,7 @@ import sanityClient from "@/lib/sanity.client";
 import { ResumeResponse } from "./types";
 
 const resumeQuery = groq`
-  *[_type == "resume" && lang == $lang] {
+  *[_type == "resume" && lang == $lang] | order(_createdAt asc) {
     title,
     personal_data -> {
       full_name,

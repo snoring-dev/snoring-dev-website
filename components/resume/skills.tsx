@@ -4,12 +4,13 @@ import { Skills as SkillsType } from "@/utils/types";
 
 interface Props {
   data: SkillsType;
+  title: string;
 }
 
-function Skills({ data }: Props) {
+function Skills({ title, data }: Props) {
   return (
     <section className="m-6 lg:m-0 lg:mt-20 lg:mb-20">
-      <Heading title="compétences" uppercase />
+      <Heading title={title} uppercase />
       <div className="flex flex-col space-y-4">
         {data.items.map((item) => (
           <div key={item._key} className="flex md:flex-row flex-col">

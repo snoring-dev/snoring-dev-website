@@ -9,6 +9,7 @@ import("dayjs/locale/fr");
 import("dayjs/locale/en");
 
 interface Props {
+  title: string;
   data: AcademicPath[];
   locale: string;
 }
@@ -57,10 +58,10 @@ const EducationLine = ({
   );
 };
 
-function Education({ data, locale }: Props) {
+function Education({ title, data, locale }: Props) {
   return (
     <section className="m-6 lg:m-0 lg:mt-20 lg:mb-20">
-      <Heading title="formation" uppercase />
+      <Heading title={title} uppercase />
       {data.map((entry, key) => {
         return <EducationLine key={key} data={entry} locale={locale} />;
       })}
