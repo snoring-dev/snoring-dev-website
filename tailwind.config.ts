@@ -20,6 +20,9 @@ const config: Config = {
     },
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  daisyui: {
+    darkTheme: false,
+  },
 };
 
 export default withMT(config);
