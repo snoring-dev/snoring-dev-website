@@ -10,7 +10,10 @@ export async function GET(
       return new NextResponse("Missing lang parameter", { status: 401 });
     }
 
-    const browser = await puppeteer.launch({ headless: "new" });
+    const browser = await puppeteer.connect({
+      browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_API_KEY}`,
+    });
+
     const page = await browser.newPage();
     await page.goto(`${process.env.BASE_URL}/resume/${params.lang}/pdf`);
     await page.emulateMediaType("screen");
