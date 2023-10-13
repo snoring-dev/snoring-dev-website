@@ -1,5 +1,13 @@
 import { NextResponse } from "next/server";
 import puppeteer from "puppeteer";
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
+
+const getBrowser = async () =>
+  IS_PRODUCTION
+    ? puppeteer.connect({
+        browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_API_KEY}`,
+      })
+    : puppeteer.launch({ headless: "new" });
 
 export async function GET(
   _req: Request,
@@ -9,11 +17,7 @@ export async function GET(
     if (!params.lang) {
       return new NextResponse("Missing lang parameter", { status: 401 });
     }
-
-    const browser = await puppeteer.connect({
-      browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_API_KEY}`,
-    });
-
+    const browser = await getBrowser();
     const page = await browser.newPage();
     await page.goto(`${process.env.BASE_URL}/resume/${params.lang}/pdf`);
     await page.emulateMediaType("screen");
