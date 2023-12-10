@@ -10,7 +10,7 @@ const sanityClient =
     projectId: "odo9cmzr",
     dataset: "production",
     apiVersion: "2021-10-21",
-    useCdn: false,
+    useCdn: true,
   });
 
 if (process.env.NODE_ENV !== "production") {
